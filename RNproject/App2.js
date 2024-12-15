@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-
+// Conatins Flexbox Property
 export default function App() {
   return (
     <View

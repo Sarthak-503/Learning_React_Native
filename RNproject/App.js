@@ -6,8 +6,8 @@ export default function App() {
   // Native elements don't have dom(don't support html elements)
   return (
     // Equivalent to div, build boxes/container that holds other content like text,Textinput, button,image
-    //(used to hold &layout other components)
-    // Acts like acontainer component for holding other component
+    //(used to hold & layout other components)
+    // Acts like a container component for holding other component
     <View style={styles.container}> 
     <View>
       <Text style={styles.dummyText}>Sa..re..ga..ma..pa..dha</Text>

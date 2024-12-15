@@ -24,13 +24,15 @@ export default function App() {
         ...prev,
         {
           title: enteredGoalText,
-          id: Math.random().toString(), // this key is used by Flatlist automatically as key for rendering 
+          id: Math.random().toString(), // this key is used by Flatlist automatically as key for rendering
         },
       ];
     });
   };
   return (
     <View style={styles.appContainer}>
+
+      {/* Rendering TextInput and the button  */}
       <View
         style={{
           flex: 1,
@@ -38,7 +40,7 @@ export default function App() {
           justifyContent: "space-between",
           alignItems: "center", //by default alignItems is stretch
           marginBottom: 24,
-          borderBottomWidth: 1,
+          borderBottomWidth: 2,
           borderBottomColor: "#dadada",
         }}
       >
@@ -49,17 +51,27 @@ export default function App() {
             borderColor: "#cccccc",
             width: "70%",
             marginRight: 8,
+            color: "white",
             padding: 8,
-            alignItems: "center",
+            height: 40,
           }}
           value={enteredGoalText}
           placeholder="Your Course Goal"
         />
-        <Button onPress={addGoalHandler} title="Add Goal" />
+        <View // For having equal height of TextInput and Button
+          style={{
+            height: 40,
+            justifyContent: "center",
+          }}
+        >
+          <Button onPress={addGoalHandler} title="Add Goal" />
+        </View>
       </View>
+
+      {/* rendering all the goals  */}
       <View style={styles.goalsContainer}>
         {/* <ScrollView // If there are 1000 Text, then ScrollView will load/render 1000 element but only 10 are shown in the screen-> performace issues, used for an Article
-          alwaysBounceVertical={false} // IOS property-> remove bouncing effect
+          alwaysBounceVertical={false} // IOS property-> remove bouncing effect in IOS
         >
           {goals.map((val) => (
             //Added View as parent container for Text as it is borderRadius is not supported in Ios in Text element,
@@ -68,7 +80,7 @@ export default function App() {
               <Text style={styles.goaltext}>
                 {val.title != "" ? val.title : ""}{" "}
               </Text>
-            </View>
+             </View>
           ))}
         </ScrollView> */}
         {/* has snall threshld ->small time taking , Flatlist support all the props scrollview support*/}
@@ -77,14 +89,14 @@ export default function App() {
           // An obj that is wrapped by individual data items
           renderItem={(itemData) => {
             return (
-              // We are nolonger mapping this data mannuallly, all the things are done by Flatlist
+              // We are nolonger mapping this data manually, all the things are done by Flatlist
               <View style={styles.goalItem}>
                 <Text style={styles.goaltext}>{itemData.item.title}</Text>
               </View>
             );
           }}
           // called to get a key for every item from goals
-          keyExtractor={(item,index)=>{
+          keyExtractor={(item, index) => {
             return item.id;
           }}
         />
@@ -100,7 +112,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   goalsContainer: {
-    flex: 5,
+    flex: 5, // For taking all the goals 5 parts out of all the screen
   },
   goalItem: {
     margin: 8,
@@ -110,6 +122,8 @@ const styles = StyleSheet.create({
   },
   goaltext: {
     color: "white",
+    textAlign:'center',
+
   },
 });
-// Executed when entire code files is executed
+// Executed when entire code files is executed, hence first styles got come and then executed
