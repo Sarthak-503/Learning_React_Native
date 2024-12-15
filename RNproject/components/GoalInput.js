@@ -16,6 +16,7 @@ const GoalInput = (props) => {
             style={styles.textInput}
             value={enteredGoalText}
             placeholder="Your Course Goal"
+            placeholderTextColor='#cccccc'
           />
           <View style={styles.buttonContainer}>
             <View style={styles.button}>
@@ -49,6 +50,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#cccccc",
     width: "100%",
+    color:"white",
+    maxHeight:45,
     padding: 8,
     alignItems: "center",
   },

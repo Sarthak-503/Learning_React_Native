@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
   goaltext: {
     padding: 8,
     color: "white",
+    textAlign:'center'
   },
   pressedItem:{
     opacity:'0.5'

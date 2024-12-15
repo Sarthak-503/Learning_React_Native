@@ -12,8 +12,8 @@ export default function App() {
     setModalIsVisible(true);
   };
   const endAddGoalHandler = () => {
-    setModalIsVisible(false)
-  } 
+    setModalIsVisible(false);
+  };
   const addGoalHandler = (enteredGoalText) => {
     setGoals((prev) => {
       return [
@@ -33,37 +33,41 @@ export default function App() {
   };
   return (
     <>
-    <StatusBar style="light"/>
-    <View style={styles.appContainer}>
-      <Button
-        title="Add New Goal"
-        color="#a065ec"
-        onPress={startAddGoalHandler}
-      />
-      {modalIsVisible && (
-        <GoalInput onAddGoal={addGoalHandler} visible={modalIsVisible} onCancel={endAddGoalHandler} />
-      )}
-
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={goals}
-          renderItem={(itemData) => {
-            return (
-              <GoalItems
-                title={itemData.item.title}
-                deleteGoalItem={handleDeleteGoalItems}
-                id={itemData.item.id}
-              />
-            );
-          }}
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}
+      {/* For changing the notifications light */}
+      <StatusBar style="light" />
+      <View style={styles.appContainer}>
+        <Button
+          title="Add New Goal"
+          color="#a065ec" // default colour is blue
+          onPress={startAddGoalHandler}
         />
-      </View>
-    </View>
-    </>
+        {modalIsVisible && (
+          <GoalInput
+            onAddGoal={addGoalHandler}
+            visible={modalIsVisible}
+            onCancel={endAddGoalHandler}
+          />
+        )}
 
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={goals}
+            renderItem={(itemData) => {
+              return (
+                <GoalItems
+                  title={itemData.item.title}
+                  deleteGoalItem={handleDeleteGoalItems}
+                  id={itemData.item.id}
+                />
+              );
+            }}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+          />
+        </View>
+      </View>
+    </>
   );
 }
 
@@ -72,7 +76,6 @@ const styles = StyleSheet.create({
     flex: 1, //For Outer container takes all the height
     paddingTop: 50,
     paddingHorizontal: 16,
-   
   },
   goalsContainer: {
     flex: 5,
