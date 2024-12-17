@@ -11,11 +11,22 @@ import GameOverScreen from "./screen/GameOverScreen";
 import { LinearGradient } from "expo-linear-gradient";
 import GameScreen from "./screen/GameScreen";
 import Colors from "./consts/colors";
+import { useFonts } from "expo-font";
+import {AppLoading} from "expo-app-loading";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState(null);
   const [gameIsOver, setGameIsOver] = useState(true);
- 
+
+  // 1st -> boolean value
+  const [fontsLoaded] =  useFonts({
+    'open-sans':require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold':require('./assets/fonts/OpenSans-Bold.ttf')
+  });
+
+  if(!fontsLoaded){
+    return <AppLoading/>  // if fonts not loaded, show Splash Screen
+  }
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
     setGameIsOver(false);

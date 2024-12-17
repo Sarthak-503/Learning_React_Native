@@ -2,6 +2,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import Title from "../components/ui/Title";
+import {Ionicons} from "@expo/vector-icons"
+
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Card from "../components/ui/Card";
@@ -66,12 +68,12 @@ const GameScreen = ({ userNumber, onGameOver }) => {
           <View style={styles.buttonsContainer}>
             <View style={styles.buttonContainer}>
               <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
-                -
+                <Ionicons name="remove" size={24}/>
               </PrimaryButton>
             </View>
             <View style={styles.buttonContainer}>
               <PrimaryButton onPress={nextGuessHandler.bind(this, "higher")}>
-                +
+                <Ionicons name="add" size={24}/>
               </PrimaryButton>
             </View>
           </View>

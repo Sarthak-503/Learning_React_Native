@@ -1,20 +1,21 @@
-import React from 'react'
-import { StyleSheet, Text } from 'react-native'
-import Colors from '../../consts/colors'
+import React from "react";
+import { StyleSheet, Text } from "react-native";
+import Colors from "../../consts/colors";
 
-const InstructionText = ({children,style}) => {
+const InstructionText = ({ children, style }) => {
   return (
     <>
-     <Text style={[styles.instructionText,style]}>{children}</Text> 
+      <Text style={[styles.instructionText, style]}>{children}</Text>
     </>
-  )
-}
+  );
+};
 
-export default InstructionText
+export default InstructionText;
 
 const styles = StyleSheet.create({
-    instructionText: {
-        color: Colors.accent500,
-        fontSize: 24,
-      },
-})
+  instructionText: {
+    fontFamily: "open-sans",
+    color: Colors.accent500,
+    fontSize: 24,
+  },
+});
