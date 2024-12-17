@@ -1,8 +1,38 @@
-import { TextInput, View, StyleSheet, Text } from "react-native";
+import { useState } from "react";
+import {
+  TextInput,
+  View,
+  StyleSheet,
+  Text,
+  Alert,
+  AlertButtons,
+} from "react-native";
 
 import PrimaryButton from "../components/PrimaryButton";
+import Colors from "../consts/colors";
 
-function StartGameScreen() {
+function StartGameScreen({onPickNumber}) {
+  const [enteredNumber, setEnteredNumber] = useState("");
+  const numberInputHandler = (enteredText) => {
+    setEnteredNumber(enteredText);
+  };
+  const confirmInputHandler = () => {
+    const choosenNumber = parseInt(enteredNumber);
+    if (isNaN(choosenNumber) || choosenNumber < 1 || choosenNumber > 99) {
+      // show alert-> native alert api built built  into android & ios
+      Alert.alert(
+        "Invalid Number!",
+        "Please Enter a Valid Number Between 1 & 99",
+        [{ text: "Okay", style: "destructive", onPress:() => setEnteredNumber('') }]
+      );
+      return;
+    }
+    onPickNumber(enteredNumber);
+    console.log("Valid Number");
+  };
+  const resetInputHandler = () => {
+    setEnteredNumber("");
+  };
   return (
     <View style={styles.inputContainer}>
       <View style={styles.text}>
@@ -17,6 +47,8 @@ function StartGameScreen() {
       <TextInput
         style={styles.numberInput}
         maxLength={2}
+        value={enteredNumber}
+        onChangeText={numberInputHandler}
         keyboardType="number-pad"
         autoCorrect={false} //useful for normal text-input
         autoCapitalize="none" //useful for normal text-input
@@ -25,10 +57,10 @@ function StartGameScreen() {
       <View style={styles.buttonContainers}>
         {/* Here alignItems stretch is happening but it only takes the height of the element/container */}
         <View style={styles.buttonContainer}>
-          <PrimaryButton>Reset</PrimaryButton>
+          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
         </View>
         <View style={styles.buttonContainer}>
-          <PrimaryButton>Confirm</PrimaryButton>
+          <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
         </View>
       </View>
     </View>
@@ -44,7 +76,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginHorizontal: 24,
     padding: 16,
-    backgroundColor: "#3b021f",
+    backgroundColor: Colors.primary800,
     borderRadius: 8,
     // all these core Components(Views) which we're using, are compiled to native Components for the different
     // platforms. And we have different native Components for Android and iOS. And these native Components
@@ -71,7 +103,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: 50,
     fontSize: 25,
-    borderBottomColor: "#ddb52f",
+    borderBottomColor: Colors.accent500,
     borderBottomWidth: 2,
     color: "#ddb52f",
     marginVertical: 8,
