@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,19 +7,33 @@ import {
   SafeAreaView,
 } from "react-native";
 import StartGameScreen from "./screen/StartGameScreen";
+import GameOverScreen from "./screen/GameOverScreen";
 import { LinearGradient } from "expo-linear-gradient";
 import GameScreen from "./screen/GameScreen";
 import Colors from "./consts/colors";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState(null);
+  const [gameIsOver, setGameIsOver] = useState(true);
+ 
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
+    setGameIsOver(false);
   };
+  const gameOverHandler = () => {
+    setGameIsOver(true);
+  };
+  
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
   if (userNumber) {
-    screen = <GameScreen />;
+    screen = (
+      <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
+    );
   }
+  if (gameIsOver && userNumber) {
+    screen = <GameOverScreen />;
+  }
+
   return (
     <>
       {/* Views only take as much space as they need to fit their content into themselves. */}

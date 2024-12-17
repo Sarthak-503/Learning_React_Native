@@ -1,5 +1,5 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
-import Colors from "../consts/colors";
+import Colors from "../../consts/colors";
 
 function PrimaryButton({ children, onPress }) {
   // When Pressable is outside the view, then the ripple effect is outside the btn, when Pressable

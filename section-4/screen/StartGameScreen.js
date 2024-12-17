@@ -8,10 +8,10 @@ import {
   AlertButtons,
 } from "react-native";
 
-import PrimaryButton from "../components/PrimaryButton";
+import PrimaryButton from "../components/ui/PrimaryButton";
 import Colors from "../consts/colors";
 
-function StartGameScreen({onPickNumber}) {
+function StartGameScreen({ onPickNumber }) {
   const [enteredNumber, setEnteredNumber] = useState("");
   const numberInputHandler = (enteredText) => {
     setEnteredNumber(enteredText);
@@ -23,7 +23,13 @@ function StartGameScreen({onPickNumber}) {
       Alert.alert(
         "Invalid Number!",
         "Please Enter a Valid Number Between 1 & 99",
-        [{ text: "Okay", style: "destructive", onPress:() => setEnteredNumber('') }]
+        [
+          {
+            text: "Okay",
+            style: "destructive",
+            onPress: () => setEnteredNumber(""),
+          },
+        ]
       );
       return;
     }
