@@ -12,29 +12,43 @@ import { LinearGradient } from "expo-linear-gradient";
 import GameScreen from "./screen/GameScreen";
 import Colors from "./consts/colors";
 import { useFonts } from "expo-font";
-import {AppLoading} from "expo-app-loading";
+// import {AppLoading} from "expo-app-loading";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState(null);
   const [gameIsOver, setGameIsOver] = useState(true);
+  const [guessRounds, setguessRounds] = useState(0);
 
+
+  const startNewGameHandler = () => {
+    setUserNumber(null);
+    setguessRounds(0);
+  }
   // 1st -> boolean value
-  const [fontsLoaded] =  useFonts({
-    'open-sans':require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold':require('./assets/fonts/OpenSans-Bold.ttf')
+  const [fontsLoaded] = useFonts({
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 
-  if(!fontsLoaded){
-    return <AppLoading/>  // if fonts not loaded, show Splash Screen
+  if (!fontsLoaded) {
+    // return <AppLoading/>  /
+    return (
+      <View>
+        <Text>
+          Loading.....
+        </Text>
+      </View>
+    );
   }
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
     setGameIsOver(false);
   };
-  const gameOverHandler = () => {
+  const gameOverHandler = (numberOfRounds) => {
     setGameIsOver(true);
+    setguessRounds(numberOfRounds)
   };
-  
+
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
   if (userNumber) {
     screen = (
@@ -42,7 +56,7 @@ export default function App() {
     );
   }
   if (gameIsOver && userNumber) {
-    screen = <GameOverScreen />;
+    screen = <GameOverScreen userNumber={userNumber} roundNumber={guessRounds} onStartNewGame={startNewGameHandler}/>;
   }
 
   return (
