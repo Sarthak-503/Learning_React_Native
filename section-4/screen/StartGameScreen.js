@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     marginTop: 100,
-    alignItems: "center",
+    alignItems: "center", // alignItem is stretch by-default
   },
   buttonContainers: {
     flexDirection: "row",
@@ -90,11 +90,12 @@ const styles = StyleSheet.create({
   numberInput: {
     height: 60,
     width: 50,
+    paddingBottom:0,
     fontSize: 25,
     borderBottomColor: Colors.accent500,
     borderBottomWidth: 2,
     color: "#ddb52f",
-    marginVertical: 8,
+    marginBottom: 18,
     fontWeight: "bold",
     textAlign: "center",
   },

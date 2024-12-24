@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
       elevation: 8, // For Box Shadow, It is an Android specific property
 
       // shadow -> IOS property
-      shadowColor: "green",
+      shadowColor: "green", // It is also a property of Android
       shadowOffset: { width: 10, height: 20 },
-      shadowRadius: 6,
+      shadowRadius: 600,
       shadowOpacity: 0.25,
     }
 })

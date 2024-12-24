@@ -30,16 +30,6 @@ export default function App() {
     "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 
-  if (!fontsLoaded) {
-    // return <AppLoading/>  /
-    return (
-      <View>
-        <Text>
-          Loading.....
-        </Text>
-      </View>
-    );
-  }
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
     setGameIsOver(false);
@@ -48,6 +38,17 @@ export default function App() {
     setGameIsOver(true);
     setguessRounds(numberOfRounds)
   };
+
+  if (!fontsLoaded) {
+    // return <AppLoading/> // Not Working
+    return (
+      <View>
+        <Text>
+          Loading...
+        </Text>
+      </View>
+    );
+  }
 
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
   if (userNumber) {
@@ -61,7 +62,7 @@ export default function App() {
 
   return (
     <>
-      {/* Views only take as much space as they need to fit their content into themselves. */}
+      {/* Views only take as much space as they need to fit their content into themselves-> need flex:1 to achieve into full screen */}
       <>
         {/* <View style={styles.rootScreen}> */}
         <LinearGradient

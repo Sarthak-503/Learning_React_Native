@@ -1,1 +1,14 @@
  npx create-expo-app@latest --template blank 
+ setx /M REACT_NATIVE_PACKAGER_HOSTNAME 192.168.0.105 -> changed the ip for expo to work
+// For installing all node_modules -> use "npm install" not "npm i"
+
+// Should be added in app.json in section-5
+     "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+
+     setx /M REACT_NATIVE_PACKAGER_HOSTNAME 192.168.0.105
+     npx expo start --tunnel
