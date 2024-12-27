@@ -11,6 +11,8 @@ const Stack = createNativeStackNavigator();
 
 function AuthStack() {
   return (
+    // This is stack based navigation
+    // navigation for unauthenticated users
     <Stack.Navigator
       screenOptions={{
         headerStyle: { backgroundColor: Colors.primary500 },
