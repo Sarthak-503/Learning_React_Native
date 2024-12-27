@@ -1,6 +1,9 @@
  npx create-expo-app --template blank RNCourse
  npx create-expo-app@latest --template blank 
  npx expo start / expo start-> run the app
+ npx expo install react-native-screens react-native-safe-area-context -> For expo 
+ installing in expo and simple react-native project is different
+
 
  setx /M REACT_NATIVE_PACKAGER_HOSTNAME 192.168.0.105 -> changed the ip for expo to work
 // For installing all node_modules -> use "npm install" not "npm i"
