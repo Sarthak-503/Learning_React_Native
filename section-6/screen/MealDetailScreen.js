@@ -1,15 +1,34 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useLayoutEffect } from "react";
+import {
+  Button,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
-
-const MealDetailScreen = ({ route }) => {
+import IconButton from "../components/IconButton";
+const MealDetailScreen = ({ route, navigation }) => {
   const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  const handlePress = () => {
+    console.log("Pressed");
+  };
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+      // return <Button title="Tap me" onPress={handlePress} />;
+      return <IconButton icon={"star"} color={"white"} onPress={handlePress}/> // custom button
+      },
+    });
+  }, [navigation, handlePress]);
   return (
     <>
-      <ScrollView style={styles.rootContainer}> 
+      <ScrollView style={styles.rootContainer}>
         <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
         <Text style={styles.title}>{selectedMeal.title}</Text>
         <MealDetails
@@ -35,8 +54,8 @@ const MealDetailScreen = ({ route }) => {
 export default MealDetailScreen;
 
 const styles = StyleSheet.create({
-  rootContainer:{
-    marginBottom:10,
+  rootContainer: {
+    marginBottom: 10,
   },
   image: {
     width: "100%",
@@ -55,7 +74,7 @@ const styles = StyleSheet.create({
   listContainer: {
     width: "80%",
   },
-  outerContainer:{
-    alignItems:'center'
-  }
+  outerContainer: {
+    alignItems: "center",
+  },
 });

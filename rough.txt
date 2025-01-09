@@ -20,3 +20,11 @@
 
      setx /M REACT_NATIVE_PACKAGER_HOSTNAME 192.168.0.105
      npx expo start --tunnel
+
+
+
+For DownLoading For Expo, use These Commands     
+expo install react-native-safe-area-context
+expo install react-native-gesture-handler react-native-reanimated
+expo install @react-navigation/native 
+npm i @expo/vector-icons

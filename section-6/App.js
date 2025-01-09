@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
+import { Button, StyleSheet } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native"; // Already present while setting up a project,don't install it
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CategoriesScreen from "./screen/CategoriesScreen";
@@ -43,18 +43,27 @@ export default function App() {
           <Stack.Screen
             name="MealsOverview"
             component={MealsOverview}
-            
+
             // options={({ route, navigation }) => {
             //   const catId = route.params.categoryId;
             //   const category = CATEGORIES.find(category => category.id === catId);
             //   const title = category ? category.title : 'Category not found';// for dynamic routes, set in that screen
             //   return {
-            //     title,  
+            //     title,
             //   };
             // }}
           />
-          <Stack.Screen name="MealDetails"
-          component={MealDetailScreen}/>
+          <Stack.Screen
+            name="MealDetails"
+            component={MealDetailScreen}
+            // Add Header only when you don't need to interact with this page otherwise 
+            // add in that page, can't interact through here
+            // options={{
+            //   headerRight: () => {
+            //     return <Button title="Tap me" />;
+            //   },
+            // }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
